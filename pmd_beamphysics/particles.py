@@ -311,7 +311,7 @@ class ParticleGroup:
         return self._data['species']
     @species.setter
     def species(self, val):
-        self._data['species'] = val
+        self._data['species'] = full_array(len(self), val) 
         
     @property
     def data(self):
