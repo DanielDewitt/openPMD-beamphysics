@@ -186,16 +186,14 @@ class ParticleGroup:
         else:
             # Fill out data. Exclude species.
             data = full_data(data)
-            species = list(set(data['species']))
             
-        self._settable_array_keys = ['x', 'px', 'y', 'py', 'z', 'pz', 't', 'status', 'weight']
+        self._settable_array_keys = ['x', 'px', 'y', 'py', 'z', 'pz', 't', 'status', 'weight', 'species']
         # Optional data
         for k in ['id']:
             if k in data:
                 self._settable_array_keys.append(k)  
             
-        self._settable_scalar_keys = ['species']
-        self._settable_keys =  self._settable_array_keys + self._settable_scalar_keys                       
+        self._settable_keys =  self._settable_array_keys                      
         # Internal data. Only allow settable keys
         self._data = {k:data[k] for k in self._settable_keys}
         
