@@ -188,11 +188,6 @@ class ParticleGroup:
             data = full_data(data)
             species = list(set(data['species']))
             
-            # Allow for empty data (len=0). Otherwise, check species.
-            if len(species) >= 1:
-                assert len(species) == 1, f'mixed species are not allowed: {species}'
-                data['species'] = species[0]
-            
         self._settable_array_keys = ['x', 'px', 'y', 'py', 'z', 'pz', 't', 'status', 'weight']
         # Optional data
         for k in ['id']:
