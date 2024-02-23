@@ -1277,9 +1277,6 @@ def particle_parts(particle_group, x):
     for k in particle_group._settable_array_keys:
         data[k] = particle_group[k][x]
 
-    for k in particle_group._settable_scalar_keys:
-        data[k] = particle_group[k]
-
     return ParticleGroup(data=data)
            
     
