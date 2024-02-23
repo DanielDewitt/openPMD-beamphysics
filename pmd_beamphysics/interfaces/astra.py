@@ -102,11 +102,9 @@ def parse_astra_phase_file(filePath):
     
     data['weight'] = qmacro
     
-    unique_species = set(species_index)
-    assert len(unique_species) == 1, 'All species must be the same'
     
-    # Scalars
-    data['species'] = astra_species_name[list(unique_species)[0]]
+    # Species now an array and n_particle scalar
+    data['species'] = species_index
     data['n_particle'] = n_particle
 
     return data
@@ -162,13 +160,10 @@ def write_astra(particle_group,
     # Make structured array
     dtype = np.dtype(list(zip(names, types)))
     data = np.zeros(size, dtype=dtype)
-    for k in ['x', 'y', 'z', 'px', 'py', 'pz', 't']:
+    for k in ['x', 'y', 'z', 'px', 'py', 'pz', 't', 'species']:
         data[k][i_start:] = getattr(particle_group, k)
     data['t'] *= 1e9 # s -> nS
     data['q'][i_start:] = particle_group.weight*1e9 # C -> nC
-    
-    # Set these to be the same
-    data['index'] = astra_species_index[particle_group.species]
     
     # Status
     # The standard defines 1 as a live particle, but astra uses 1 as a 'passive' particle
