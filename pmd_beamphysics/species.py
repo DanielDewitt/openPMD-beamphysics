@@ -32,8 +32,8 @@ MASS_OF = {'electron': mec2,
 # Functions
 
 def mass_of(species):
-    if species in MASS_OF:
-        return MASS_OF[species]
+    if species[0] in MASS_OF:
+        return MASS_OF[species[0]]
     
     raise ValueError(f'Species not available: {species}')
     
