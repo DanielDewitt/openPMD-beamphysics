@@ -71,6 +71,8 @@ def parse_astra_phase_file(filePath):
     qmacro = np.abs(data[1:,7]*1e-9)
     
     species_index = data[1:,8].astype(int)
+    species_type = [astra_species_name[index] for index in species_index]
+  
     status = data[1:,9].astype(int)  
     
     # Select particle by status 
@@ -104,7 +106,7 @@ def parse_astra_phase_file(filePath):
     
     
     # Species now an array and n_particle scalar
-    data['species'] = species_index
+    data['species'] = species_type
     data['n_particle'] = n_particle
 
     return data
